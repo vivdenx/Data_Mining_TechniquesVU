@@ -5,12 +5,10 @@ import numpy as np
 
 def read():
     data = pd.read_csv(open('./dataset_mood_smartphone.csv'))
-    print(np.unique(list(data.id)))
-    for i in range(1,34):
-    	patientNo = str(i)
-    	patient = "AS14." + patientNo.zfill(2)
-    	patient_data = data.loc[data.id==patient]
-    	patient_data.to_csv("./patientData/patient" + patientNo + ".csv")
+    patients = np.unique(list(data.id))
+    for i in patients:
+    	patient_data = data.loc[data.id==i]
+    	patient_data.to_csv("./patientData/patient" + i + ".csv")
         
 
 if __name__ == '__main__':
