@@ -5,6 +5,7 @@ import numpy as np
 
 def read():
     data = pd.read_csv(open('./dataset_mood_smartphone.csv'))
+    print(np.unique(list(data.id)))
     for i in range(1,34):
     	patientNo = str(i)
     	patient = "AS14." + patientNo.zfill(2)
