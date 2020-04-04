@@ -1,10 +1,18 @@
 import pandas as pd
 import os
-
+import logging
 
 def clean_time(in_filepath):
+    """
+    Cleans the time into a more readable format with different columns for
+        day, month and time. Year is removed because all data was acquired
+        in 2014.
+        #TODO: should I split hour and minutes too?
+
+    :param in_filepath: path to the file that should be cleaned.
+    """
     data = pd.read_csv(in_filepath)
-    data.rename(columns={"time":"old_time"},
+    data.rename(columns={"time": "old_time"},
                 inplace=True)
 
     # Converting the time to a more readable format.
@@ -15,7 +23,6 @@ def clean_time(in_filepath):
         if time.endswith(":00.000") is True:
             time = time.replace(":00.000", "")
         data.at[index, "time"] = time
-        data.at[index, "year"] = year
         data.at[index, "month"] = month
         data.at[index, "day"] = day
 
@@ -24,10 +31,10 @@ def clean_time(in_filepath):
 
 
 def run():
-    in_filepath = './data/dataset_mood_smartphone.csv'
     folderpath = "./patientData/"
     for path in os.listdir(folderpath):
-        clean_time(folderpath+path)
+        clean_time(folderpath + path)
+        # logging.info(f"File at {path} cleaned.")
 
 
 if __name__ == "__main__":
