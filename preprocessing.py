@@ -11,6 +11,7 @@ def clean_time(in_filepath):
         day, month and time. Year is removed because all data was acquired
         in 2014.
         #TODO: should I split hour and minutes too?
+        #TODO: should I use the number of entries a day as a variable?
 
     :param in_filepath: path to the file that should be cleaned.
     """
@@ -35,8 +36,6 @@ def clean_time(in_filepath):
         logging.info(f"File at {in_filepath} cleaned.")
     except:
         logging.info(f"File at {in_filepath} already cleaned.")
-
-
 
 
 def run():
